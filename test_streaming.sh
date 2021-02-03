@@ -4,7 +4,7 @@ NUM_ERRORS=0
 
 function report_case () {
   if [ $1 == 0 ]
-  then printf "\e[94m%s\e[0m %s \e[1m%s\e[0m \e[32m %s\e[0m\n" "$COUNT" "|" $2 "SUCCESS: $3s"
+  then printf "\e[94m%s\e[0m %s \e[1m%s\e[0m \e[32m %s\e[0m\n" "$COUNT" "|" $2 "SUCCESS"
   else
     printf "\e[94m%s\e[0m %s \e[1m%s\e[0m \e[31m %s\e[0m\n" "$COUNT" "|" $2 "FAILURE";
     (( NUM_ERRORS += 1 ));
