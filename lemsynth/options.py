@@ -7,9 +7,9 @@ import importlib_resources
 ###############################################################################
 # Setting lemma synthesis options here. DO NOT MODIFY.
 # DO NOT switch on prefetching. Code is not updated to handle current sygus output.
-experimental_prefetching_switch = 'off'
-use_cex_models = True
-constraint_based_solver = 'on'
+experimental_prefetching_switch = 'on'
+use_cex_models = False
+constraint_based_solver = 'off'
 verbose = 'off'
 
 exclude_set_type_definitions_switch = 'off'
