@@ -1,0 +1,12 @@
+benchmark-suite/bst-left-right.py
+benchmark-suite/bst-left.py
+benchmark-suite/bst-right.py
+benchmark-suite/list-lseg-keys.py
+benchmark-suite/list-lseg-keys2.py
+benchmark-suite/list-hlist-list.py
+benchmark-suite/list-hlist-lseg.py
+benchmark-suite/reach-left-right.py
+benchmark-suite/bst-minimal.py
+benchmark-suite/bst-maximal.py
+benchmark-suite/maxheap-htree-key.py
+benchmark-suite/maxheap-keys.py
