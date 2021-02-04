@@ -204,7 +204,7 @@ def solveProblem(lemma_grammar_args, lemma_grammar_terms, goal, name, grammar_st
         # reset everything and increase prefetching timeout if streaming is on
         if options.experimental_prefetching_switch == 'on':
             final_out['time_charged'] = 0
-            if config_params['prefetch_timeout'] >= 3600:
+            if config_params['prefetch_timeout'] >= 1800:
                 exit('Timeout reached. Exiting')
             else:
                 config_params['prefetch_timeout'] *= 2
