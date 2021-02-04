@@ -5,7 +5,7 @@
                    (=> Start Start)
                    (not (= Loc nil))
                    (<= I I)
-                   (member k S)))
+                   (member k S)
                    (bst Loc)))
            (S (Set Int) (
               (keys Loc)))
