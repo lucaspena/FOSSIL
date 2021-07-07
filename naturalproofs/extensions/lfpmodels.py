@@ -30,6 +30,13 @@ def rank_fcts():
     lseg_rankdef = If(Or(x == y, x == nil), True, lseg(x, y) == (lseg_rank(nxt(x), y) < lseg_rank(x, y)))
     lseg_def_body = And(lseg_recdef, lseg_rankdef)
 
+    # List segment ending at y
+    lsegy = Function('lsegy', IntSort(), BoolSort())
+    lsegy_rank = Function('lsegy_rank', IntSort(), IntSort())
+    lsegy_recdef = lsegy(x) == If(x == y, True, lsegy(nxt(x)))
+    lsegy_rankdef = If(x == y, True, lsegy(x) == (lsegy_rank(nxt(x)) < lsegy_rank(x)))
+    lsegy_def_body = And(lsegy_recdef, lsegy_rankdef)
+    
     # Binary tree
     lft = Function('lft', IntSort(), IntSort())
     rght = Function('rght', IntSort(), IntSort())
@@ -139,6 +146,7 @@ def rank_fcts():
     return {
         'lst': ((x,), lst_def_body),
         'lseg': ((x, y,), lseg_def_body),
+        'lsegy': ((x, y,), lsegy_def_body),
         'tree': ((x,), tree_def_body),
         'bst': ((x,), bst_def_body),
         'cyclic': ((x,), cyclic_def_body),
@@ -175,6 +183,13 @@ def rank_fcts_lightweight():
     lseg_rank_def = ((x, y), If(x == y, lseg_rank(x, y) == 0,
                                 If(lseg(x, y), lseg_rank(x, y) > lseg_rank(nxt(x), y),
                                    lseg_rank(x, y) == -1)))
+
+    # List segment ending at y
+    lsegy = z3.Function('lsegy', fgsort.z3sort, boolsort.z3sort)
+    lsegy_rank = z3.Function('lsegy_rank', fgsort.z3sort, intsort.z3sort)
+    lsegy_rank_def = ((x,), If(x == y, lsegy_rank(x) == 0,
+                               If(lsegy(x), lsegy_rank(x) > lsegy_rank(nxt(x)),
+                                  lsegy_rank(x) == -1)))
 
     # List variants: sorted list or sorted lseg, and doubly linked lists/sorted doubly linked lists
     slst = z3.Function('slst', fgsort.z3sort, boolsort.z3sort)
@@ -282,6 +297,7 @@ def rank_fcts_lightweight():
     return {
         'lst': lst_rank_def,
         'lseg': lseg_rank_def,
+        'lsegy': lseg_rank_def,
         'slst': slst_rank_def,
         'slseg': slseg_rank_def,
         'dlst': dlst_rank_def,
